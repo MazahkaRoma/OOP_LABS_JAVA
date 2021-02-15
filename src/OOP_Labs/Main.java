@@ -7,10 +7,11 @@ public class Main
     public static void main(String[] args)
     {
         Scanner scanner=new Scanner(System.in);
+        System.out.println("Исходная срока: ");
         if(scanner.hasNextLine())
         {
+
             String s=scanner.nextLine();
-            System.out.println("Исходная срока: "+s);
 
             System.out.println("Возможный палиндром: "+reverseString(s));
             boolean bIsPalindrome= isPalindrome(reverseString(s),s);
@@ -34,7 +35,7 @@ public class Main
 
     public static boolean isPalindrome(String sPalindrome,String originString)
     {
-        return originString.equals(reverseString(sPalindrome));
+        return originString.equals(sPalindrome);
     }
 
 }
