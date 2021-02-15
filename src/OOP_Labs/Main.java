@@ -1,27 +1,28 @@
 package OOP_Labs;
 
+import java.util.Scanner;
+
 public class Main
 {
     public static void main(String[] args)
     {
-        System.out.print("Простые числа от 0 до 100: ");
-        for (int i=2;i<=100;i++)
+        Scanner scanner=new Scanner(System.in);
+        if(scanner.hasNextLine())
         {
-            if(isPrime(i))
-            {
-                System.out.print(i+", ");
-            }
+            String s=scanner.nextLine();
+            System.out.println("Исходная срока: "+s);
+
+            System.out.println("Полиндром: "+polindrome(s));
         }
     }
-    public static boolean isPrime(int n) //Является ли чсло простым
+    public static String polindrome(String upcomingString)
     {
-        for(int i=2;i<n;i++)
+        for(int i=upcomingString.length()-1;i>=0;i--)
         {
-            if(n%i==0)
-            {
-                return false;
-            }
+            upcomingString+=upcomingString.charAt(i);
         }
-        return true;
+        return upcomingString;
+
     }
+
 }
