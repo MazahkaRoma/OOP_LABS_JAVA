@@ -22,7 +22,7 @@ public class Main
             else System.out.println("Не палиндром");
         }
     }
-    public static String reverseString(String upcomingString)
+    public static String reverseString(String upcomingString)//заполнить новую строку символами в обратном порядке оригинальной строки
     {
         String sPalindrome= "";
         for(int i=upcomingString.length()-1;i>=0;i--)
@@ -33,7 +33,7 @@ public class Main
 
     }
 
-    public static boolean isPalindrome(String sPalindrome,String originString)
+    public static boolean isPalindrome(String sPalindrome,String originString)//проверка является ли строка палиндромом
     {
         return originString.equals(sPalindrome);
     }
