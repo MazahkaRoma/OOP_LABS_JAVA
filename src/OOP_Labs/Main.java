@@ -12,17 +12,29 @@ public class Main
             String s=scanner.nextLine();
             System.out.println("Исходная срока: "+s);
 
-            System.out.println("Полиндром: "+polindrome(s));
+            System.out.println("Возможный палиндром: "+reverseString(s));
+            boolean bIsPalindrome= isPalindrome(reverseString(s),s);
+            if (bIsPalindrome)
+            {
+                System.out.println("Палиндром");
+            }
+            else System.out.println("Не палиндром");
         }
     }
-    public static String polindrome(String upcomingString)
+    public static String reverseString(String upcomingString)
     {
+        String sPalindrome= "";
         for(int i=upcomingString.length()-1;i>=0;i--)
         {
-            upcomingString+=upcomingString.charAt(i);
+            sPalindrome+=upcomingString.charAt(i);
         }
-        return upcomingString;
+        return sPalindrome;
 
+    }
+
+    public static boolean isPalindrome(String sPalindrome,String originString)
+    {
+        return originString.equals(reverseString(sPalindrome));
     }
 
 }
