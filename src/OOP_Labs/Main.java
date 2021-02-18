@@ -82,6 +82,11 @@ public class Main
 
     public static double computeArea(Point3D firstPoint, Point3D secondPoint, Point3D thirdPoint) /*Метод для рассчета площади треугольника */
     {
+        if(firstPoint.isEqual(secondPoint)&&firstPoint.isEqual(thirdPoint)) //Проверка равенства точек
+        {
+            System.out.println("Данные точки равны. Закрытие программы");
+            System.exit(0);
+        }
         ///Рассчет сторон треугольника
             double cadetA =firstPoint.getDistance(secondPoint);
             double cadetB =secondPoint.getDistance(thirdPoint);

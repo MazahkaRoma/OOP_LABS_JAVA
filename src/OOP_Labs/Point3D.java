@@ -45,6 +45,11 @@ public class Point3D
         this.pointZ = pointZ;
     }
 
+    public boolean isEqual(Point3D anotherPoint) { return (this.pointX==anotherPoint.getPointX()
+                                                   && this.pointY==anotherPoint.getPointY()
+                                                   && this.pointZ==anotherPoint.getPointZ());
+                                                 }
+
     public double getDistance(Point3D toAnotherPoint) //Метод рассчета растояния до точки
     {
         return Math.sqrt(Math.pow(toAnotherPoint.getPointX()-this.getPointX(),2)+
