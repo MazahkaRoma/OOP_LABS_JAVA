@@ -7,7 +7,7 @@ import java.awt.image.ImageObserver;
 
 class JImageDisplay extends javax.swing.JComponent
 {
-    private BufferedImage bufferedImage;
+    public BufferedImage bufferedImage;
 
     public JImageDisplay(int width, int height)
     {
