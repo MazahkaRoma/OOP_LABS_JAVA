@@ -11,7 +11,6 @@ import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import javax.swing.filechooser.FileFilter;
 
 public class FractalExplorer{
@@ -30,24 +29,29 @@ public class FractalExplorer{
     public void createAndShowGUI(){
         JFrame frame = new JFrame("Fractal Explorer");
         Button buttonReset = new Button("Reset Display");
+
         JPanel jpanel = new JPanel();
         JPanel jpanelBoth = new JPanel();
         Button buttonSave = new Button("Save Image");
         jpanelBoth.add(buttonSave);
         jpanelBoth.add(buttonReset);
+
         JLabel jLabel = new JLabel("Fractal: ");
         JComboBox comboBox = new JComboBox();
         comboBox.addItem("Mandelbrot");
         comboBox.addItem("Tricorn");
         comboBox.addItem("BurningShip");
+
         jpanel.add(jLabel);
         jpanel.add(comboBox);
+
         ActionListener actionListener = new buttonResetClick();
         ActionListener saveAction = new buttonSaveClick();
         MouseListener mouseListener = new displayMouseClick();
         buttonReset.addActionListener(actionListener);
         buttonSave.addActionListener(saveAction);
-        comboBox.addActionListener(new ActionListener() {
+        comboBox.addActionListener(new ActionListener()
+        {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String nameFractal = (String) comboBox.getSelectedItem();
@@ -68,11 +72,15 @@ public class FractalExplorer{
                 }
             }
         });
+
         frame.addMouseListener(mouseListener);
+
         frame.getContentPane().add(display, BorderLayout.CENTER);
         frame.getContentPane().add(jpanelBoth, BorderLayout.SOUTH);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(jpanel, BorderLayout.NORTH);
+
         frame.pack();
         frame.setVisible(true);
         frame.setResizable(false);
@@ -80,15 +88,22 @@ public class FractalExplorer{
 
     private void drawFractal(){
         double xCoord, yCoord;
-        for (int x = 0; x < size; x++){
-            for (int y = 0; y < size; y++){
+        for (int x = 0; x < size; x++)
+        {
+            for (int y = 0; y < size; y++)
+            {
                 xCoord = FracctalGenerator.getCoord(range.x, range.x + range.width, size, x);
                 yCoord = FracctalGenerator.getCoord(range.y, range.y + range.height, size, y);
+
                 int iterations = fractalGenerator.numIterations(xCoord, yCoord);
                 int rgbColor;
-                if (iterations == -1){
+
+                if (iterations == -1)
+                {
                     rgbColor = 0;
-                }else{
+                }
+                else
+                    {
                     float hue = 0.7f + (float) iterations / 200f;
                     rgbColor = Color.HSBtoRGB(hue, 1f, 1f);
                 }
@@ -100,31 +115,41 @@ public class FractalExplorer{
     }
 
 
-    private class buttonResetClick implements ActionListener {
+    private class buttonResetClick implements ActionListener
+    {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e)
+        {
             fractalGenerator.getInitialRange(range);
             drawFractal();
         }
     }
 
-    private class buttonSaveClick implements ActionListener{
+    private class buttonSaveClick implements ActionListener
+    {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e)
+        {
             JFileChooser jFileChooser = new JFileChooser();
             FileFilter filter = new FileNameExtensionFilter("PNG Images", "png");
             jFileChooser.setFileFilter(filter);
             jFileChooser.setAcceptAllFileFilterUsed(false);
-            if (jFileChooser.showSaveDialog(display) == JFileChooser.APPROVE_OPTION){
+            if (jFileChooser.showSaveDialog(display) == JFileChooser.APPROVE_OPTION)
+            {
                 File file = jFileChooser.getSelectedFile();
-                try {
+                try
+                {
                     ImageIO.write(display.bufferedImage, "png", file);
-                } catch (IOException exception) {
+                }
+                catch (IOException exception)
+                {
                     JOptionPane.showMessageDialog(display, exception.getMessage(),
                             "Cannot Save Image", JOptionPane.ERROR_MESSAGE);
-                } catch (NullPointerException exception) {
+                }
+                catch (NullPointerException exception)
+                {
                     JOptionPane.showMessageDialog(display, "Save error",
                             "Cannot Save Image", JOptionPane.ERROR_MESSAGE);
                 }
@@ -133,10 +158,12 @@ public class FractalExplorer{
         }
     }
 
-    private class displayMouseClick implements MouseListener {
+    private class displayMouseClick implements MouseListener
+    {
 
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(MouseEvent e)
+        {
             double xCoord = FracctalGenerator.getCoord(range.x, range.x + range.width, size, e.getX());
             double yCoord = FracctalGenerator.getCoord(range.y, range.y + range.height, size, e.getY());
             fractalGenerator.recenterAndZoomRange(range, xCoord, yCoord,0.5);
@@ -144,27 +171,20 @@ public class FractalExplorer{
         }
 
         @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
+        public void mousePressed(MouseEvent e) { }
 
         @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
+        public void mouseReleased(MouseEvent e) { }
 
         @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
+        public void mouseEntered(MouseEvent e) { }
 
         @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
+        public void mouseExited(MouseEvent e) { }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         FractalExplorer fractalExplorer = new FractalExplorer(800);
         fractalExplorer.createAndShowGUI();
         fractalExplorer.fractalGenerator.getInitialRange(fractalExplorer.range);

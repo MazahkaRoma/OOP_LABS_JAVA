@@ -6,7 +6,8 @@ public class Tricorn extends FracctalGenerator{
     public static final int MAX_ITERATIONS = 2000;
 
     @Override
-    public void getInitialRange(Rectangle2D.Double range) {
+    public void getInitialRange(Rectangle2D.Double range)
+    {
         range.x = -2;
         range.y = -2;
         range.width = 4;
@@ -14,10 +15,12 @@ public class Tricorn extends FracctalGenerator{
     }
 
     @Override
-    public int numIterations(double x0, double y0) {
+    public int numIterations(double x0, double y0)
+    {
         int i = 0;          //z^2 = (x + y(i))^2 =
         double x = 0, y = 0; // = x^2 + 2xyi - y^2
-        while (x * x + y * y <= 4 && i < MAX_ITERATIONS){
+        while (x * x + y * y <= 4 && i < MAX_ITERATIONS)
+        {
             y *= -1;
             double xtemp = x * x - y * y + x0;
             y = 2 * x * y + y0;
@@ -28,7 +31,5 @@ public class Tricorn extends FracctalGenerator{
     }
 
     @Override
-    public String toString() {
-        return "Tricorn";
-    }
+    public String toString() { return "Tricorn"; }
 }
