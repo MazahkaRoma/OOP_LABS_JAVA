@@ -67,7 +67,7 @@ import java.util.LinkedList;
             showResult(viewedLink);
         }
         public static void main(String[] args) {
-            String[] arg = new String[]{"https://vk.com","4"};
+            String[] arg = new String[]{"http://natribu.org/ru","4"};
             try {
                 Process(arg[0], Integer.parseInt(arg[1]));
             } catch (NumberFormatException | IOException e) {
