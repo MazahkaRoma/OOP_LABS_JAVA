@@ -38,7 +38,8 @@ import java.util.LinkedList;
                         request(out, currentPair);
                         String line;
                         while ((line = in.readLine()) != null) {
-                            if (line.indexOf(currentPair.URL_PREFIX) != -1 && line.indexOf('"') != -1) {
+                            if (line.indexOf(currentPair.URL_PREFIX) != -1 && line.indexOf('"') != -1)
+                            {
                                 StringBuilder currentLink = new StringBuilder();
                                 int i = line.indexOf(currentPair.URL_PREFIX);
                                 while (line.charAt(i) != '"' && line.charAt(i) != ' ') {
@@ -57,7 +58,9 @@ import java.util.LinkedList;
                             }
                         }
                         my_socket.close();
-                    } catch (SocketTimeoutException e) {
+                    }
+                    catch (SocketTimeoutException e)
+                    {
                         my_socket.close();
                     }
                 }
@@ -67,7 +70,7 @@ import java.util.LinkedList;
             showResult(viewedLink);
         }
         public static void main(String[] args) {
-            String[] arg = new String[]{"http://natribu.org/ru","4"};
+            String[] arg = new String[]{"https://www.google.com/webhp?client=opera-gx","3"};
             try {
                 Process(arg[0], Integer.parseInt(arg[1]));
             } catch (NumberFormatException | IOException e) {
